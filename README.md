@@ -8,7 +8,7 @@ La gestione degli ordini viene effettuata tramite una sezione dedicata agli Admi
 L'amministratore può caricare, modificare e cancellare i dati relativi ai prodotti, aziende e categorie dei prodotti stessi.
 ## 📦 Backup Database
 - Scaricare il progetto
-- Effettuare il backup del database del file bak
+- Effettuare il backup del database del file bak all'interno del file zip.
 - All'avvio dell'applicazione si potrà scegliere se effettuare il login o registrarsi
 - Effettuando la registrazione il ruolo utente verrà salvato nel database come User, mentre per accedere come admin bisogna loggarsi con le seguenti credenziali: Email: admin@email.it
   password : 1111

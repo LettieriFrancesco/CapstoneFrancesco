@@ -1,0 +1,53 @@
+﻿@model CapstoneProjectFrancesco.Models.Aziende
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div>
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+        <div class="container mt-5">
+            <!--Grid row-->
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-6">
+                    <h2 class="text-danger text-center fw-bold mb-5">Vuoi rimuovere questa azienda dal database?</h2>
+                    <img src="~/Content/FileUpload/@Model.LogoAzienda" class="w-75" alt="foto-azienda-logo" />
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-6">
+                    <!--Azienda-->
+                    <h3 class="text-black">Azienda</h3>
+                    <span class="text-muted fs-4">- @Model.NomeAzienda</span>
+                    <!------------------------------------------------------------->
+                    <!--Categoria-->
+                    <h3 class="text-black mt-2">Indirizzo</h3>
+                    <span class="text-muted fs-4">- @Model.IndirizzoAzienda </span>
+                    <!------------------------------------------------------------->
+                    <!--Nome Prodotto-->
+                    <h3 class="text-black mt-2">Recapito telefonico</h3>
+                    <span class="text-muted fs-4">- @Model.RecapitoAzienda</span>
+                    <!------------------------------------------------------------->
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color mt-3">
+                            <input type="submit" value="Elimina" class="btn btn-danger" />
+                            @Html.ActionLink("Indietro", "Index", "", new { @class = "btn btn-dark" })
+                        </div>
+                    }
+                </div>
+                <!--Grid column-->
+            </div>
+        </div>
+    </main>
+    <!--Main layout-->
+</div>
+

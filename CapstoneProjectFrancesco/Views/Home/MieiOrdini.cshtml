@@ -1,0 +1,113 @@
+﻿@model List<CapstoneProjectFrancesco.Models.Dettaglio_Ordine>
+
+@{
+    ViewBag.Title = "MieiOrdini";
+}
+
+@if (TempData["OrdiniUser"] != null)
+{
+    <div class="alert alert-info w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["OrdiniUser"]</div>
+}
+else
+{
+
+    <body>
+        <div class="main-content mt-5">
+            <div class="container-fluid mt-7">
+                <!-- Table -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <h3 class="mb-3 text-center text-decoration-underline">Miei ordini</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Prodotto</th>
+                                            <th scope="col">Totale spesa</th>
+                                            <th scope="col">Quantità</th>
+                                            <th scope="col">Stato ordine</th>
+                                            <th scope="col">Stato Spedizione</th>
+                                            <th scope="col">Indirizzo Spedizione</th>
+                                            @*<th scope="col">Cliente</th>*@
+                                            <th scope="col">Data Ordine</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">
+                                                    <div class="media align-items-center">
+                                                        <a href="#" class="avatar rounded-circle mr-3">
+                                                            <img alt="Image placeholder" style="width:80px;" src="~/Content/FileUpload/@item.Prodotti.FotoProdotto1">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="mb-0 text-sm">@item.Prodotti.NomeProdotto</span>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    @string.Format("{0:C}", (@item.Ordine.Importo))
+                                                </td>
+                                                <td>
+                                                    @item.Quantita
+                                                </td>
+                                                <td>
+                                                    @if (item.Ordine.StatoOrdine == "Ordine da evadere")
+                                                    {
+
+                                                        <p class="text-danger fw-bold">@item.Ordine.StatoOrdine</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text-success fw-bold">@item.Ordine.StatoOrdine</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (item.Ordine.StatoConsegna == "Ordine da elaborare")
+                                                    {
+
+                                                        <p class="text-danger fw-bold">@item.Ordine.StatoConsegna</p>
+                                                    }
+                                                    else if (item.Ordine.StatoConsegna == "Il tuo ordine è stato elaborato")
+                                                    {
+                                                        <p class="text-warning fw-bold">@item.Ordine.StatoConsegna</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text-success fw-bold">@item.Ordine.StatoConsegna</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <p>@item.Ordine.Indirizzo</p>
+                                                </td>
+                                                @*<td>
+                                                        <div class="avatar-group">
+                                                            <p>@item.Ordine.User.Nome  @item.Ordine.User.Cognome</p>
+                                                        </div>
+                                                    </td>*@
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="mr-2">@item.Ordine.Data.ToString("dd/MM/yyyy")</span>
+                                                        <div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+}

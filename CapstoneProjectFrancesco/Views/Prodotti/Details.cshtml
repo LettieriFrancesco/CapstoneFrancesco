@@ -1,0 +1,67 @@
+﻿@model CapstoneProjectFrancesco.Models.Prodotti
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div class="container mt-5">
+        <!--Grid row-->
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4">
+                <img src="~/Content/FileUpload/@Model.Aziende.LogoAzienda" class="w-75" alt="Logo-azienda" />
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="~/Content/FileUpload/@Model.FotoProdotto2" class="w-100" alt="foto-prodotto" />
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h2 class="text-black text-center mb-5">Dettagli prodotto</h2>
+                <!--Azienda-->
+                <h3 class="text-black">Azienda</h3>
+                <span class="text-muted fs-4">- @Model.Aziende.NomeAzienda</span>
+                <!------------------------------------------------------------->
+                <!--Categoria-->
+                <h3 class="text-black mt-2">Categoria</h3>
+                <span class="text-muted fs-4">- @Model.Categorie.CategoriaProdotto</span>
+                <!------------------------------------------------------------->
+                <!--Nome Prodotto-->
+                <h3 class="text-black mt-2">Prodotto</h3>
+                <span class="text-muted fs-4">- @Model.NomeProdotto</span>
+                <!------------------------------------------------------------->
+                <!--Quantità a magazzino(pz)-->
+                <h3 class="text-black mt-2">Disponibilità</h3>
+                <span class="text-muted fs-4">- @Model.Quantita pz</span>
+                <!------------------------------------------------------------->
+                <!--Quantità/Peso prodotto-->
+                <h3 class="text-black mt-2">Quantità/Peso</h3>
+                <span class="text-muted fs-4">- @Model.Peso</span>
+                <!------------------------------------------------------------->
+                <!--Prezzo-->
+                <h3 class="text-black mt-2">Prezzo</h3>
+                <span class="text-muted fs-4">- @Model.Prezzo.ToString("C")</span>
+                <!------------------------------------------------------------->
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 text-center">
+                <p>
+                    @Html.ActionLink("Modifica", "Edit", new { id = Model.IdProdotto }, new {@class="btn btn-warning"})
+                    @Html.ActionLink("Elimina", "Delete", new { id = Model.IdProdotto }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Indietro", "Index", "", new {@class="btn btn-dark"})
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+<!--Main layout-->
+

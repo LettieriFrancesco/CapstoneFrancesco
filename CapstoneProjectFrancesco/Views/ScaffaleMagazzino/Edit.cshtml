@@ -1,0 +1,51 @@
+﻿@model CapstoneProjectFrancesco.Models.Scaffale_Magazzino
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="text-center mt-5 mb-5 text-black fw-bold">Modifica</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdScaffale)
+
+<div class="container">
+    <div class="row mb-5 mt-5">
+        <div class="col">
+            <div class="form-outline">
+                @Html.EditorFor(model => model.DescrizioneScaffale, new { htmlAttributes = new { @class = "form-control", id = "DescrizioneScaffale" } })
+                @Html.ValidationMessageFor(model => model.DescrizioneScaffale, "", new { @class = "text-danger" })
+                <label class="form-label text-black p-0 fw-bold" for="DescrizioneScaffale">Descrizione scaffale*</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5 mt-5">
+        <div class="form-group">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdCorsia, "Corsia*", htmlAttributes: new { @class = "control-label col-md-2 text-black fw-bold" })
+                    <div class="col-md-10 mt-2">
+                        @Html.DropDownList("IdCorsia", null, "--- Seleziona corsia ---", htmlAttributes: new { @class = "form-control text-black fw-bold" })
+                        @Html.ValidationMessageFor(model => model.IdCorsia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salva modifiche" class="btn btn-warning" />
+                <span class="ms-1">@Html.ActionLink("Indietro", "Index", "", new { @class = "btn btn-dark" })</span>
+            </div>
+            <div class="d-flex justify-content-end">
+                <p class="text-black fw-bold">( * ) Campi obbligatori</p>
+            </div>
+        </div>
+    </div>
+
+    }

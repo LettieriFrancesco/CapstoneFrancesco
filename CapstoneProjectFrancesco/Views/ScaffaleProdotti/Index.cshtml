@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CapstoneProjectFrancesco.Models.Scaffale_Prodotti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center mt-5 text-black mb-5">Prodotti in magazzino</h2>
+
+@*<div class="d-flex justify-content-end mb-3">
+    <a class="btn btn-warning me-5" href="/RicercaProdotti/RicercaProdotto">Ricerca avanzata</a>
+</div>*@
+<table class="table table-info">
+    <tr>
+        <th class="fs-4">
+            @Html.DisplayNameFor(model => model.Prodotti.NomeProdotto)
+        </th>
+        <th class="fs-4">
+            @Html.DisplayNameFor(model => model.Scaffale_Magazzino.DescrizioneScaffale)
+        </th>
+        <th class="fs-4">
+            @Html.DisplayNameFor(model => model.Scaffale_Magazzino.Corsie_Magazzino.DescrizioneCorsia)
+        </th>
+        <th>
+            <a class="btn btn-warning me-5" href="/RicercaProdotti/RicercaProdotto">Ricerca avanzata</a>
+@Html.ActionLink("Registra prodotto","Create","", new {@class="btn btn-primary"})
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="fw-bold">
+            @Html.DisplayFor(modelItem => item.Prodotti.NomeProdotto)
+        </td>
+        <td class="fw-bold">
+            @Html.DisplayFor(modelItem => item.Scaffale_Magazzino.DescrizioneScaffale)
+        </td>
+        <td class="fw-bold">
+            @Html.DisplayFor(modelItem => item.Scaffale_Magazzino.Corsie_Magazzino.DescrizioneCorsia)
+        </td>
+        <td class="fw-bold">
+            @Html.ActionLink("Modifica", "Edit", new { id = item.IdScaffaleProdotti }, new {@class="text-black"}) |
+            @Html.ActionLink("Elimina", "Delete", new { id = item.IdScaffaleProdotti }, new { @class = "text-danger"})
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,76 @@
+﻿@model List<CapstoneProjectFrancesco.Models.Prodotti>
+
+@{
+    ViewBag.Title = "Index";
+}
+@section Styles{
+    <link href="~/Content/StileAdminProdotti.css" rel="stylesheet" />
+}
+
+<h2 class="text-center mt-5 mb-5 text-black fw-bold">Prodotti</h2>
+
+<p class="ms-3">
+    @Html.ActionLink("Registra prodotto", "Create", "", new { @class = "btn btn-warning" })
+</p>
+@if (TempData["EliminaCategoria"] != null)
+{
+    <div>
+        <p class="alert alert-secondary">@TempData["EliminaCategoria"]</p>
+    </div>
+}
+@if (TempData["EliminaProdotto"] != null)
+{
+    <div class="alert alert-success w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["EliminaProdotto"]</div>
+}
+
+@if (TempData["ErroreEliminazione"] != null)
+{
+    <div class="alert alert-danger w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["ErroreEliminazione"]</div>
+}
+@if (TempData["ProdottoAggiunto"] != null)
+{
+    <div class="alert alert-success w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["ProdottoAggiunto"]</div>
+}
+@if (TempData["ProdottoModificato"] != null)
+{
+    <div class="alert alert-success w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["ProdottoModificato"]</div>
+}
+
+
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.IdProdotto }) |
+                @Html.ActionLink("Details", "Details", new { id=item.IdProdotto }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.IdProdotto })
+            </td>*@
+       
+
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-md-3 col-sm-6 mb-2">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="@Url.Action("Details",new {id = p.IdProdotto})" class="image">
+                            <img class="img-1" src="~/Content/FileUpload/@p.Aziende.LogoAzienda">
+                            <img class="img-2" src="~/Content/FileUpload/@p.Aziende.LogoAzienda">
+                        </a>
+                        @*<ul class="product-links">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-random"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>*@
+                        <a href="@Url.Action("Details", new { id = p.IdProdotto })" class="btn btn-warning product-view"><i class="fa fa-search"></i></a>
+                        @*<a href="#" class="product-view"><i class="fa fa-search"></i></a>*@
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title text-center text-truncate fw-bold"><a href="@Url.Action("Details",new {id = p.IdProdotto})">@p.NomeProdotto</a></h3>
+                    </div>
+                </div>
+            </div>
+            
+        }
+    </div>
+</div>

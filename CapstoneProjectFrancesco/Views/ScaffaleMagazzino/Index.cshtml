@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CapstoneProjectFrancesco.Models.Scaffale_Magazzino>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center mt-5 mb-5 text-black fw-bold">Scaffali magazzino</h2>
+
+@if (TempData["EliminaScaffale"] != null)
+{
+    <div class="alert alert-success w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["EliminaScaffale"]</div>
+}
+<div class="container">
+    <table class="table table-info">
+        <tr>
+            <th class="fs-5">
+                @Html.DisplayNameFor(model => model.Corsie_Magazzino.DescrizioneCorsia)
+            </th>
+            <th class="fs-5">
+                @Html.DisplayNameFor(model => model.DescrizioneScaffale)
+            </th>
+            <th>
+
+                @Html.ActionLink("Aggiungi scaffale", "Create", "", new { @class = "btn btn-warning" })
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="fw-bold">
+                    @Html.DisplayFor(modelItem => item.Corsie_Magazzino.DescrizioneCorsia)
+                </td>
+                <td class="fw-bold">
+                    @Html.DisplayFor(modelItem => item.DescrizioneScaffale)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifica", "Edit", new { id = item.IdScaffale }, new { @class = "text-black" }) |
+                    @Html.ActionLink("Elimina", "Delete", new { id = item.IdScaffale }, new { @class = "text-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

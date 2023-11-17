@@ -1,0 +1,59 @@
+﻿@model CapstoneProjectFrancesco.Models.Prodotti
+@{
+    ViewBag.Title = "RicercaProdotto";
+}
+
+<div class="container d-flex flex-column justify-content-center mx-auto mt-3">
+    <h2 class="text-center mt-5 mb-5 text-black">Ricerca prodotti magazzino</h2>
+
+    <div class="form-group mx-auto">
+        <div class=" d-flex  justify-content-center align-items-center">
+            @Html.DropDownList("IdProdotti", null,"--- Prodotti in magazzino ---", htmlAttributes: new { @class = "form-control fw-bold text-black", id = "Dropdown" })
+            @Html.ValidationMessageFor(model => model.IdProdotto, "", new { @class = "text-danger" })
+            <button class="btn btn-danger mx-auto text-center ms-2" id="Cerca2">Cerca</button>
+        </div>
+    </div>
+
+    <div class="container  d-flex flex-column justify-content-center mx-auto mt-3">
+        <div class="row" id="List2">
+        </div>
+    </div>
+</div>
+@section scripts {
+    
+    <script type="text/javascript">
+
+        $("#Cerca2").click(function () {
+            var valore = $("#Dropdown").val()
+            console.log(valore)
+            $.ajax({
+                method: "POST",
+                url: "RicercaProdottoScaffale",
+                data: { IdProdotti: valore },
+                success: function (data) {
+                    $("#List2").html("");
+                    console.log(data)
+
+                    if (data.NomeScaffale != null) {
+                        var licurrent = "<p class='text-center text-black'>Il prodotto selezionato si trova sullo <strong> " + data.NomeScaffale + "</strong> all'interno della <strong> " + data.Corsia + "</strong></p>";
+                        $("#List2").html(licurrent);
+                    }
+                    else {
+                        var licurrent = "<p class='text-center text-black fw-bold'>Il prodotto non è stato ancora registrato nella sezione <a href='/ScaffaleProdotti/Create'>registra prodotto</a>.</p>";
+                        $("#List2").html(licurrent);
+                    }
+
+
+
+                }
+
+            })
+
+        })
+
+
+
+    </script>
+    
+    
+    }

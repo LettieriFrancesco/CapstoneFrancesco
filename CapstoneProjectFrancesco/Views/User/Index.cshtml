@@ -1,0 +1,236 @@
+﻿@model IEnumerable<CapstoneProjectFrancesco.Models.Prodotti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<!--Main Navigation-->
+<header>
+    <!-- Carousel wrapper -->
+    <div id="introCarousel" class="carousel slide carousel-fade shadow-2-strong mt-1" data-mdb-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-mdb-target="#introCarousel" data-mdb-slide-to="0" class="active"></li>
+            <li data-mdb-target="#introCarousel" data-mdb-slide-to="1"></li>
+            <li data-mdb-target="#introCarousel" data-mdb-slide-to="2"></li>
+            <li data-mdb-target="#introCarousel" data-mdb-slide-to="3"></li>
+        </ol>
+
+        <!-- Inner -->
+        <div class="carousel-inner">
+            <!-- Single item -->
+            <div class="carousel-item active">
+                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-white text-center">
+                            <h1 class="mb-3">Benvenuto in Terra di Sapori</h1>
+                            <h5 class="mb-4">Dove la Calabria si incontra con il tuo palato</h5>
+                            <h6 class="mb-4">Scopri i sapori autentici della Calabria</h6>
+                            <a class="btn btn-outline-light btn-lg m-2"
+                               href="https://www.youtube.com/watch?v=c9B4TPnak1A">Inizia l'avventura culinaria</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="carousel-item">
+                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-white text-center">
+                            <h2>Gli ingredienti di una tradizione culinaria millenaria pronti a raccontare storie uniche</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="carousel-item">
+                <div class="mask"
+                     style="background-color: rgba(0, 0, 0, 0.3);">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-white text-center">
+                            <h2>And cover it with any mask</h2>
+                            <a class="btn btn-outline-light btn-lg m-2"
+                               href="https://mdbootstrap.com/docs/standard/content-styles/masks/"
+                               target="_blank"
+                               role="button">Learn about masks</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-white text-center">
+                            <h2>Gli ingredienti di una tradizione culinaria millenaria pronti a raccontare storie uniche</h2>
+                            <a class="btn btn-outline-light btn-lg m-2"
+                               href="https://mdbootstrap.com/docs/standard/content-styles/masks/"
+                               target="_blank"
+                               role="button">Learn about masks</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Inner -->
+        <!-- Controls -->
+        <a class="carousel-control-prev" href="#introCarousel" role="button" data-mdb-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#introCarousel" role="button" data-mdb-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- Carousel wrapper -->
+</header>
+<!--Main Navigation-->
+<!--Main layout-->
+<main class="mt-5">
+    <div class="container">
+        <!--Section: Content-->
+        <section>
+            <div class="row">
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                        <img src="~/Content/ImgProgetto/Peperoncino-calabrese.png" class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 gx-5 mb-4">
+                    <h4><strong>La Calabria e il suo territorio</strong></h4>
+                    <p class="text-muted">
+
+                        Il nome Calabria deriva da quello dell'antica popolazione italica, i Calabri, che abitava l'estremo sud di questa parte di penisola. Una curiosità che pochi conoscono è che sotto la denominazione di “Calabria” si identificava in origine la regione salentina, il tacco d'Italia. Ma quando le due penisole dell’Italia meridionale furono unificate dai bizantini, il nome “Calabria” fu usato per identificare anche la regione della punta dello stivale.
+
+                        Fu solo successivamente che questo nome fu utilizzato per designare soltanto l’attuale penisola calabrese. L’etimologia della parola Calabria deriverebbe dal greco “Kalon-brion”, ovvero “Faccio sorgere il bene”, per la fertilità del territorio costiero. Infatti, ancora oggi tutte le zone lambite sia dal Mar Tirreno che dallo Ionio (sempre contese dalle popolazioni che nella storia si sono insediate e avvicendate nel dominio di questa regione), sono ricche di vasti oliveti, agrumeti e frutteti, con coltivazioni e produzioni tipiche quali ad esempio il bergamotto e il cedro.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!--Section: Content-->
+
+        <hr class="my-5" />
+
+        <!--Section: Content-->
+        <section class="text-center">
+            <h4 class="mb-5"><strong>I nostri prodotti</strong></h4>
+
+            <div class="row">
+                @foreach (var p in Model)
+                {
+                    <div class="col-lg-4 col-md-12 mb-4">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                <img src="~/Content/FileUpload/@p.FotoProdotto1"
+                                     class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@p.NomeProdotto</h5>
+                                <p class="card-text text-truncate">
+                                    @p.DescrizioneProdotto
+                                </p>
+                                <p class="card-text">
+                                    @p.Prezzo.ToString("C")
+                                </p>
+                                <a href="@Url.Action("Details", new { id = p.IdProdotto })" class="btn btn-default">Scopri di più</a>
+                                @*@Html.ActionLink("Dettagli", "Details", new { @class = "btn btn-warning" })*@
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+        <!--Section: Content-->
+
+        <hr id="newsletter" class="my-5" />
+
+        <!--Section: Content-->
+        <section class="mb-5">
+            <h4 class="mb-5 text-center"><strong>Facilis consequatur eligendi</strong></h4>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <form>
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" id="form3Example1" class="form-control" />
+                                    <label class="form-label" for="form3Example1">First name</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" id="form3Example2" class="form-control" />
+                                    <label class="form-label" for="form3Example2">Last name</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="form3Example3" class="form-control" />
+                            <label class="form-label" for="form3Example3">Email address</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="form3Example4" class="form-control" />
+                            <label class="form-label" for="form3Example4">Password</label>
+                        </div>
+
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <input class="form-check-input me-2"
+                                   type="checkbox"
+                                   value=""
+                                   id="form2Example3"
+                                   checked />
+                            <label class="form-check-label" for="form2Example3">
+                                Subscribe to our newsletter
+                            </label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">
+                            Sign up
+                        </button>
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <p>or sign up with:</p>
+                            <button type="button" class="btn btn-primary btn-floating mx-1">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-primary btn-floating mx-1">
+                                <i class="fab fa-google"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-primary btn-floating mx-1">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-primary btn-floating mx-1">
+                                <i class="fab fa-github"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!--Section: Content-->
+    </div>
+</main>
+<!--Main layout-->

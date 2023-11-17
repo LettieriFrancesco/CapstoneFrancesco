@@ -1,0 +1,184 @@
+﻿@using CapstoneProjectFrancesco.Models
+@model List<Dettaglio_Ordine>
+
+@{
+    ViewBag.Title = "ViewCarrello";
+}
+
+@*<h2>ViewCarrello</h2>*@
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+@if (TempData["Aggiunto"] != null)
+{
+    <div class="alert alert-success text-center w-25 mx-auto my-3">@TempData["Aggiunto"]</div>
+}
+@if (TempData["Eliminato"] != null)
+{
+    <div class="alert alert-info text-center w-25 mx-auto my-3">@TempData["Eliminato"]</div>
+}
+
+
+@if (Session["Carrello"] != null)
+{
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8">
+                @foreach (var item in Model)
+                {
+                    <div class="card border shadow-none mt-3">
+                        <div class="card-body">
+
+                            <div class="d-flex align-items-start border-bottom pb-3">
+                                <div class="me-4">
+                                    <img style="width:100px;" src="~/Content/FileUpload/@item.Prodotti.FotoProdotto1" alt="Immagine-prodotto" class="avatar-lg rounded">
+                                </div>
+                                <div class="flex-grow-1 align-self-center overflow-hidden">
+                                    <div>
+                                        <h5 class="text-truncate font-size-18">@item.Prodotti.NomeProdotto</h5>
+                                        <p class="text-muted mb-0">
+                                            <i class="bx bxs-star text-warning"></i>
+                                            <i class="bx bxs-star text-warning"></i>
+                                            <i class="bx bxs-star text-warning"></i>
+                                            <i class="bx bxs-star text-warning"></i>
+                                            <i class="bx bxs-star-half text-warning"></i>
+                                        </p>
+                                        <p class="mb-0 mt-1">Azienda : <span class="fw-medium">@item.Prodotti.Aziende.NomeAzienda</span></p>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 ms-2">
+                                    <ul class="list-inline mb-0 font-size-16">
+                                        <li class="list-inline-item">
+                                            @Html.ActionLink("Elimina", "EliminaProdotto", new { id = item.IdProdotto }, new { @class = "mdi mdi-trash-can-outline text-danger" })
+                                            @*<i class="mdi mdi-trash-can-outline"></i>*@
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mt-3">
+                                            <p class="text-muted mb-2">Prezzo</p>
+                                            <h5 class="mb-0 mt-2">@string.Format("{0:C}", (item.Prodotti.Prezzo))</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="mt-3">
+                                            <p class="text-muted mb-2">Quantità</p>
+                                            <a href="@Url.Action("Sottrai", "Home", new { id = item.IdProdotto })"><i class="fa fa-minus"></i></a>
+                                            <span class="fw-bold">@item.Quantita</span>
+                                            <a href="@Url.Action("Aggiungi", "Home", new { id = item.IdProdotto })"><i class="fa fa-plus"></i></a>
+                                            @*<div class="d-inline-flex">
+                                                    <select class="form-select form-select-sm w-xl">
+                                                        <option value="1">1</option>
+                                                        <option value="2" selected="">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                    </select>
+                                                </div>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mt-3">
+                                            <p class="text-muted mb-2">Totale</p>
+                                            <h5> @string.Format("{0:C}", (item.Prodotti.Prezzo * item.Quantita))</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                <!-- end card -->
+
+                <div class="row my-4">
+                    <div class="col-sm-6">
+                        <a href="/Home/ProdottiList" class="btn btn-link text-muted">
+                            <i class="mdi mdi-arrow-left me-1"></i> Continua Shopping
+                        </a>
+                    </div> <!-- end col -->
+                    <!-- end col -->
+                </div> <!-- end row-->
+            </div>
+
+            <div class="col-xl-4">
+                <div class="mt-5 mt-lg-0">
+                    <div class="card border shadow-none mt-3">
+                        <div class="card-header bg-transparent border-bottom py-3 px-4">
+                            <h5 class="font-size-16 mb-0">Riepilogo ordine</h5>
+                        </div>
+                        <div class="card-body p-4 pt-2">
+
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <td>Spesa :</td>
+                                            <td class="text-end">@string.Format("{0:C}", ViewBag.TotaleCarrello)</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Spedizione :</td>
+                                            <td class="text-end">Gratis</td>
+                                        </tr>
+                                        <tr class="bg-light">
+                                            <th>Totale :</th>
+                                            <td class="text-end">
+                                                <span class="fw-bold">
+                                                    @string.Format("{0:C}", ViewBag.TotaleCarrello)
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            @*<div class="col-sm-6">*@
+                            <div class="text-sm-end mt-2 mt-sm-0">
+                                @using (Html.BeginForm("AddOrdine", "Home", FormMethod.Post))
+                                {
+
+                                    @*<label class="pe-2 fw-semibold fs-5">Indirizzo di consegna</label>*@
+
+                                    <span class="pd-2 text-center text-danger fst-italic fw-semibold w-25 mt-3">* Se diverso da quello di registrazione</span>
+
+                                    <div class="d-flex justify-content-between">
+                                        <input class="p-2 rounded" style="width:40%" id="Indirizzo" name="Indirizzo" placeholder="Indirizzo" />
+                                        @*<input class="btn btn-success mdi mdi-cart-outline me-1" value="CheckOut" type="submit"/>*@
+                                        <button class="btn btn-success mdi mdi-cart-outline me-1" type="submit">Checkout</button>
+                                    </div>
+                                }
+
+
+                                @*<i class="mdi mdi-cart-outline me-1"></i> Checkout*@
+                            </div>
+                            @*</div>*@
+                            <!-- end table-responsive -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-center mt-4 alert alert-primary">
+        <p class="fw-bold">Il tuo carrello è vuoto ritorna alla sezione <a href="/Home/ProdottiList">Shop</a> per acquistare i prodotti che più ti interessano</p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <img src="~/Content/ImgProgetto/emptyCartIcon.jpg" />
+    </div>
+}
+@*<h3>Totale del carrello: @string.Format("{0:C}", ViewBag.TotaleCarrello)</h3>*@

@@ -1,0 +1,47 @@
+﻿@model List<CapstoneProjectFrancesco.Models.Prodotti>
+@{
+    ViewBag.Title = "Olio";
+}
+@section Styles{
+    <link href="~/Content/StileCardProdotti.css" rel="stylesheet" />
+}
+
+
+<section class="text-center content-container">
+    <div class="container mt-5">
+        <p class="text-secondary">Sono presenti @Model.Count articoli</p>
+        <div class="row">
+            @foreach (var p in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <a href="@Url.Action("Details",new {id = p.IdProdotto})" class="image">
+                                <img class="img-1" src="~/Content/FileUpload/@p.FotoProdotto1">
+                                <img class="img-2" src="~/Content/FileUpload/@p.FotoProdotto2">
+                            </a>
+
+                            <a href="@Url.Action("Details", new { id = p.IdProdotto })" class="btn btn-warning product-view"><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="product-content">
+                            <ul class="rating">
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="disable">@p.Aziende.NomeAzienda</li>
+                            </ul>
+                            <h3 class="title"><a href="@Url.Action("Details",new {id = p.IdProdotto})">@p.NomeProdotto</a></h3>
+                            <div class="price">@p.Prezzo.ToString("C")</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script src="~/Scripts/JavaScript.js"></script>
+}

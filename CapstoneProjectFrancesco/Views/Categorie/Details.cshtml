@@ -1,0 +1,28 @@
+﻿@model CapstoneProjectFrancesco.Models.Categorie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Categorie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoriaProdotto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoriaProdotto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCategoria }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.IdCategoria })
+    @Html.ActionLink("Back to List", "Index")
+</p>

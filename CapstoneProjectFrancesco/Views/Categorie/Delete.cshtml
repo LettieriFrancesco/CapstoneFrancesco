@@ -1,0 +1,43 @@
+﻿@model CapstoneProjectFrancesco.Models.Categorie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div>
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+        <div class="container mt-5">
+            <!--Grid row-->
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-6">
+                    <h2 class="text-danger text-center fw-bold mb-5">Vuoi rimuovere questa categoria dal database?</h2>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-6">
+                    <!--Azienda-->
+                    <h3 class="text-black">Categoria</h3>
+                    <span class="text-muted fs-4">- @Model.CategoriaProdotto</span>
+                    <!------------------------------------------------------------->
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color mt-3">
+                            <input type="submit" value="Elimina" class="btn btn-danger" />
+                            @Html.ActionLink("Indietro", "Index", "", new { @class = "btn btn-dark" })
+                        </div>
+                    }
+                </div>
+                <!--Grid column-->
+            </div>
+        </div>
+    </main>
+    <!--Main layout-->
+</div>

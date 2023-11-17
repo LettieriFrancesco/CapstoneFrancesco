@@ -1,0 +1,73 @@
+﻿@model CapstoneProjectFrancesco.Models.Ordine
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="mt-5 mb-5 text-black text-center">Modifica stato ordine</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdOrdine)
+
+    <div class="container">
+        <div class="row mb-5 mt-5">
+            <div class="col">
+                <div class="form-outline">
+                    @Html.EditorFor(model => model.StatoConsegna, new { htmlAttributes = new { @class = "form-control", id = "NomeProdotto" } })
+                    @Html.ValidationMessageFor(model => model.StatoConsegna, "", new { @class = "text-danger" })
+                    <label class="form-label text-black p-0 fw-bold" for="NomeProdotto">Stato consegna*</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    @Html.EditorFor(model => model.StatoOrdine, new { htmlAttributes = new { @class = "form-control", id = "Prezzo" } })
+                    @Html.ValidationMessageFor(model => model.StatoOrdine, "", new { @class = "text-danger" })
+                    <label class="form-label text-black p-0 fw-bold" for="Prezzo">Stato ordine*</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    @Html.EditorFor(model => model.Indirizzo, new { htmlAttributes = new { @class = "form-control", id = "Quantita" } })
+                    @Html.ValidationMessageFor(model => model.Indirizzo, "", new { @class = "text-danger" })
+                    <label class="form-label text-black p-0 fw-bold" for="Quantita">Indirizzo*(Se richiesta modifica)</label>
+                </div>
+            </div>
+
+        </div>
+      
+       
+
+        
+        <div class="row mb-4">
+           
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdUser, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 mt-2">
+                        @Html.DropDownList("IdUser", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdUser, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4 justify-content-center">
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salva modifiche" class="btn btn-warning" />
+                <span class="ms-1">@Html.ActionLink("Indietro", "Index", "", new { @class = "btn btn-dark" })</span>
+            </div>
+            <div class="d-flex justify-content-end">
+                <p class="text-black fw-bold">( * ) Campi obbligatori</p>
+            </div>
+        </div>
+    </div>
+
+   
+}

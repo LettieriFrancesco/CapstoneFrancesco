@@ -1,0 +1,137 @@
+﻿@using CapstoneProjectFrancesco.Models
+@model List<Dettaglio_Ordine>
+@{
+    ViewBag.Title = "Index";
+}
+@section Styles{
+    <link href="~/Content/StileAdminHome.scss" rel="stylesheet" />
+}
+
+@if (TempData["EliminaProdotto"] != null)
+{
+    <div class="alert alert-danger w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["EliminaProdotto"]</div>
+}
+
+@if (TempData["EliminataAzienda"] != null)
+{
+    <div class="alert alert-success w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["EliminataAzienda"]</div>
+}
+@if (TempData["ErroreEliminazione"] != null)
+{
+    <div class="alert alert-danger w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["ErroreEliminazione"]</div>
+}
+@if (TempData["NessunOrdine"] != null)
+{
+    <div class="alert alert-info w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["NessunOrdine"]</div>
+}
+else
+{
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <body>
+        <div class="main-content mt-5">
+            <div class="container-fluid mt-7">
+                <!-- Table -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <h3 class="mb-3 text-center text-decoration-underline">Ordini clienti</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Prodotto</th>
+                                            <th scope="col">Totale spesa</th>
+                                            <th scope="col">Quantità</th>
+                                            <th scope="col">Stato ordine</th>
+                                            <th scope="col">Stato Spedizione</th>
+                                            <th scope="col">Indirizzo Spedizione</th>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Data Ordine</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">
+                                                    <div class="media align-items-center">
+                                                        <a href="#" class="avatar rounded-circle mr-3">
+                                                            <img alt="Image placeholder" style="width:80px;" src="~/Content/FileUpload/@item.Prodotti.FotoProdotto1">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="mb-0 text-sm">@item.Prodotti.NomeProdotto</span>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    @string.Format("{0:C}", (@item.Ordine.Importo))
+                                                </td>
+                                                <td>
+                                                    @item.Quantita
+                                                </td>
+                                                <td>
+                                                    @if (item.Ordine.StatoOrdine == "Ordine da evadere")
+                                                    {
+
+                                                        <p class="text-danger fw-bold">@item.Ordine.StatoOrdine</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text-success fw-bold">@item.Ordine.StatoOrdine</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (item.Ordine.StatoConsegna == "Ordine da elaborare")
+                                                    {
+
+                                                        <p class="text-danger fw-bold">@item.Ordine.StatoConsegna</p>
+                                                    }
+                                                    else if (item.Ordine.StatoConsegna == "Il tuo ordine è stato elaborato")
+                                                    {
+                                                        <p class="text-warning fw-bold">@item.Ordine.StatoConsegna</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text-success fw-bold">@item.Ordine.StatoConsegna</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <p>@item.Ordine.Indirizzo</p>
+                                                </td>
+                                                <td>
+                                                    <div class="avatar-group">
+                                                        <p>@item.Ordine.User.Nome  @item.Ordine.User.Cognome</p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="mr-2">@item.Ordine.Data.ToString("dd/MM/yyyy")</span>
+                                                    </div>
+                                                </td>
+                                                <td class="text-right">
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            @Html.ActionLink("Modifica", "Edit", new { id = item.IdOrdine })
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+}
+
+
+@section scripts{
+    <script src="~/Scripts/ScriptAdminHome.js"></script>
+}

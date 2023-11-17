@@ -1,0 +1,136 @@
+﻿@model CapstoneProjectFrancesco.Models.Aziende
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="text-center mt-5 mb-5 text-black fw-bold">Modifica dati aziende</h2>
+
+@using (Html.BeginForm("Edit", "Aziende", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.IdAzienda)
+<div class="container">
+    <div class="row mb-5 mt-5">
+        <div class="col">
+            <div class="form-outline">
+                @Html.EditorFor(model => model.NomeAzienda, new { htmlAttributes = new { @class = "form-control", id = "NomeAzienda" } })
+                @Html.ValidationMessageFor(model => model.NomeAzienda, "", new { @class = "text-danger" })
+                <label class="form-label text-black p-0 fw-bold" for="NomeAzienda">Nome Azienda*</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                @Html.EditorFor(model => model.IndirizzoAzienda, new { htmlAttributes = new { @class = "form-control", id = "IndirizzoAzienda" } })
+                @Html.ValidationMessageFor(model => model.IndirizzoAzienda, "", new { @class = "text-danger" })
+                <label class="form-label text-black p-0 fw-bold" for="IndirizzoAzienda">Indirizzo Azienda</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col">
+            <div class="form-outline">
+                @Html.EditorFor(model => model.RecapitoAzienda, new { htmlAttributes = new { @class = "form-control", id = "RecapitoAzienda" } })
+                @Html.ValidationMessageFor(model => model.RecapitoAzienda, "", new { @class = "text-danger" })
+                <label class="form-label text-black p-0 fw-bold" for="RecapitoAzienda">Recapito Azienda</label>
+            </div>
+        </div>
+            <div class="col">
+                <div class="form-outline">
+                    @Html.EditorFor(model => model.DescrizioneAzienda, new { htmlAttributes = new { @class = "form-control", id = "DescrizioneAzienda" } })
+                    @Html.ValidationMessageFor(model => model.DescrizioneAzienda, "", new { @class = "text-danger" })
+                    <label class="form-label text-black fw-bold p-0" for="DescrizioneAzienda">Descrizione Azienda</label>
+                </div>
+            </div>
+    </div>
+
+        <div class="row mb-5">
+            <div class="col">
+                <label>Foto Azienda <small>(opzionale)</small></label>
+                <div class="form-outline">
+                    @Html.EditorFor(model => model.FotoAzienda, new { htmlAttributes = new { @class = "form-control fw-bold text-black", id = "FotoAzienda", type = "file" } })
+                    @Html.ValidationMessageFor(model => model.FotoAzienda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col">
+                <label>Logo Azienda <small>(opzionale)</small></label>
+                <div class="form-outline">
+                    @Html.EditorFor(model => model.LogoAzienda, new { htmlAttributes = new { @class = "form-control fw-bold text-black", id = "LogoAzienda", type = "file" } })
+                    @Html.ValidationMessageFor(model => model.LogoAzienda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salva modifiche" class="btn btn-warning" />
+                <span class="ms-1">@Html.ActionLink("Indietro", "Index", "", new { @class = "btn btn-dark" })</span>
+            </div>
+            <div class="d-flex justify-content-end">
+                <p class="text-black fw-bold">( * ) Campi obbligatori</p>
+                <br />
+            </div>
+            <div class="d-flex justify-content-end">
+                <p class="text-muted fw-bold">(opzionale) Se lasciati vuoti verrano caricati di default dei placeholder.</p>
+            </div>
+        </div>
+    </div>
+    @*<div class="form-horizontal">
+            <h4>Aziende</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NomeAzienda, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NomeAzienda, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NomeAzienda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IndirizzoAzienda, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IndirizzoAzienda, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IndirizzoAzienda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RecapitoAzienda, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RecapitoAzienda, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RecapitoAzienda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DescrizioneAzienda, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DescrizioneAzienda, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DescrizioneAzienda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FotoAzienda, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FotoAzienda, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FotoAzienda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LogoAzienda, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LogoAzienda, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LogoAzienda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+    }

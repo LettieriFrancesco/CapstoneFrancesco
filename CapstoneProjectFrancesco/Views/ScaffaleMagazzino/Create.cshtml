@@ -1,0 +1,43 @@
+﻿@model CapstoneProjectFrancesco.Models.Scaffale_Magazzino
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 class="text-center mt-5 mb-5 text-black fw-bold">Registra scaffale</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="form-outline">
+                @Html.EditorFor(model => model.DescrizioneScaffale, new { htmlAttributes = new { @class = "form-control", id = "Descrizionescaffale" } })
+                @Html.ValidationMessageFor(model => model.DescrizioneScaffale, "", new { @class = "text-danger" })
+                <label class="form-label text-black p-0 fw-bold" for="DescrizioneScaffale">Descrizione scaffale*</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdCorsia, "Corsia*", htmlAttributes: new { @class = "control-label text-black fw-bold" })
+                <div class="col-md-10 mt-2">
+                    @Html.DropDownList("IdCorsia", null, "--- Seleziona corsia ---", htmlAttributes: new { @class = "form-control text-black fw-bold" })
+                    @Html.ValidationMessageFor(model => model.IdCorsia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salva" class="btn btn-warning" />
+            <span class="ms-1">@Html.ActionLink("Indietro", "Index", "", new { @class = "btn btn-dark" })</span>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p class="text-black fw-bold">( * ) Campi obbligatori</p>
+        </div>
+    </div>
+</div>
+        }

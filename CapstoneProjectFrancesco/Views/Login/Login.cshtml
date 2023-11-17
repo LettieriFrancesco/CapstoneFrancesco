@@ -1,0 +1,103 @@
+﻿@model CapstoneProjectFrancesco.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    
+}
+@section Styles{
+    <link href="~/Content/StileCardProdotti.css" rel="stylesheet" />
+    }
+@if (ViewBag.Errore != null)
+{
+    <div class="alert alert-danger w-25 mx-auto text-center m-4">@ViewBag.Errore</div>
+}
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+@Html.AntiForgeryToken()
+
+<section class="vh-100 bg-image content-container product-image"
+             style="background-image: url('/Content/ImgProgetto/Peperoncino-calabrese.png');">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class="text-uppercase text-center mb-5 text-warning">Accedi</h2>
+
+                                <form class="product-content">
+
+                                    <div class="form-outline mb-4">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id="Email" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        <label class="form-label" for="form3Example1cg">E-mail</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control fw-bold",id="Password",type="password" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        <label class="form-label" for="Password">Password</label>
+                                    </div>
+
+                                    <div class="form-check d-flex justify-content-center mb-5">
+                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                                        <label class="form-check-label" for="form2Example3g">
+                                            I agree all statements in <a href="#!" class="text-warning"><u>Terms of service</u></a>
+                                        </label>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                            <input type="submit" value="Accedi" class="btn btn-warning" />
+                                    </div>
+
+                                    <p class="text-center text-muted mt-5 mb-0">
+                                        Non hai ancora un account? <a href="/Login/Register"
+                                                                    class="fw-bold text-warning"><u>Registrati qui</u></a>
+                                    </p>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@*<div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>*@
+}
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/JavaScript.js"></script>
+}

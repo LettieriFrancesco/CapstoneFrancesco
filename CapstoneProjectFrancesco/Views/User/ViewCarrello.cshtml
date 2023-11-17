@@ -1,0 +1,56 @@
+﻿@using CapstoneProjectFrancesco.Models
+@model List<Dettaglio_Ordine>
+
+@{
+    ViewBag.Title = "ViewCarrello";
+}
+
+<h2>ViewCarrello</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (Session["Carrello"] != null)
+{
+    @Html.ActionLink("Checkout","AddOrdine", new {@class= "btn btn-warning"})
+
+<table class="table">
+    @*<tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ordine.TempoConsegna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prodotti.NomeProdotto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantita)
+            </th>
+            <th></th>
+        </tr>*@
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ordine.StatoConsegna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prodotti.NomeProdotto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantita)
+            </td>
+            <td>
+                @string.Format("{0:C}", (item.Prodotti.Prezzo * item.Quantita))
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdDettaglioOrdine }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdDettaglioOrdine }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdDettaglioOrdine })
+            </td>
+        </tr>
+    }
+
+</table>
+}

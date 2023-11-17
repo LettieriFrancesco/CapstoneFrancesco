@@ -1,0 +1,88 @@
+﻿@model CapstoneProjectFrancesco.Models.Ordine
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Ordine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatoConsegna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatoConsegna)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatoOrdine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatoOrdine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Indirizzo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Indirizzo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Spedizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Spedizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImportoSpedizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImportoSpedizione)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

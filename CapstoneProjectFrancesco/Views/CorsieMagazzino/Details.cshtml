@@ -1,0 +1,26 @@
+﻿@model CapstoneProjectFrancesco.Models.Corsie_Magazzino
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Corsie_Magazzino</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DescrizioneCorsia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescrizioneCorsia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCorsia }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,73 @@
+﻿@model List<CapstoneProjectFrancesco.Models.Prodotti>
+@{
+    ViewBag.Title = "ProdottiList";
+}
+@section Styles{
+    <link href="~/Content/StileCardProdotti.css" rel="stylesheet" />
+}
+
+    <section class="text-center content-container">
+        <div class="container mt-5">
+            <p class="text-secondary">Sono presenti @Model.Count articoli</p>
+            <div class="row">
+                @foreach (var p in Model)
+                {
+                    <div class="col-md-3 col-sm-6 mb-5">
+                        <div class="product-grid">
+                            <div class="product-image">
+                                <a href="@Url.Action("Details",new {id = p.IdProdotto})" class="image">
+                                    <img class="img-1" src="~/Content/FileUpload/@p.FotoProdotto1">
+                                    <img class="img-2" src="~/Content/FileUpload/@p.FotoProdotto2">
+                                </a>
+                                @*<ul class="product-links">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-random"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>*@
+                                <a href="@Url.Action("Details", new { id = p.IdProdotto })" class="btn btn-warning product-view"><i class="fa fa-search"></i></a>
+                                @*<a href="#" class="product-view"><i class="fa fa-search"></i></a>*@
+                            </div>
+                            <div class="product-content">
+                                <ul class="rating">
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="disable">@p.Aziende.NomeAzienda</li>
+                                </ul>
+                                <h3 class="title"><a href="@Url.Action("Details",new {id = p.IdProdotto})">@p.NomeProdotto</a></h3>
+                                <div class="price">@p.Prezzo.ToString("C")</div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card">
+                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                            <img src="~/Content/FileUpload/@p.FotoProdotto1"
+                                 class="img-fluid" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@p.NomeProdotto</h5>
+                            <p class="card-text text-truncate">
+                                @p.DescrizioneProdotto
+                            </p>
+                            <p class="card-text">
+                                @p.Prezzo.ToString("C")
+                            </p>
+                            <a href="@Url.Action("Details", new { id = p.IdProdotto })" class="btn btn-warning">Scopri di più</a>
+                        </div>
+                    </div>
+                </div>*@
+                }
+            </div>
+        </div>
+    </section>
+
+    @section scripts{
+        <script src="~/Scripts/JavaScript.js"></script>
+    }
+
